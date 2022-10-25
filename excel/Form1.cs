@@ -28,8 +28,8 @@ namespace excel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var myForm = new Form2();
-            myForm.Show();
+            Form2 finfo = new Form2(this);
+            finfo.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -103,6 +103,7 @@ namespace excel
 
         #endregion
 
+        public static System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

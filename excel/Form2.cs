@@ -12,9 +12,15 @@ namespace excel
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        Form1 fgrid;
+        public Form2(Form1 fg)
         {
             InitializeComponent();
+            this.fgrid = fg;
+        }
+
+        public Form2()
+        {
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -35,7 +41,7 @@ namespace excel
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            fgrid.dataGridView1.Rows.Add(textBox1.Text, textBox2.Text);
         }
     }
 }
