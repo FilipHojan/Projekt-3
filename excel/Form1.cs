@@ -27,7 +27,15 @@ namespace excel
         }
 
 
-        DataSet result;
+
+        public static DataTable addRecord(DataTable dt)
+        {
+            if (index == maxrow - 1)
+            {
+                dt.Rows.Add();
+            }
+            return dt;
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,13 +61,23 @@ namespace excel
             return dt;
         }
 
-        internal static void addRecord(DataTable dt)
-        {
-            throw new NotImplementedException();
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Hide();
+            maxrow = dataGridView1.RowCount;
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+            form2 = null;
+
+
+            dataGridView1.DataSource = dt;
+            DataGridViewRow selectedRow = dataGridView1.Rows[index];
+            selectedRow.Cells[0].Value = tytul;
+            selectedRow.Cells[1].Value = autor;
+            selectedRow.Cells[2].Value = id;
+
+            Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -69,15 +87,9 @@ namespace excel
 
         private void button2_Click(object sender, EventArgs e)
         {
-            using(OpenFileDialog ofd = new OpenFileDialog() { Filter="Excel|*xls", ValidateNames = true })
-            {
-                if(ofd.ShowDialog() == DialogResult.OK)
-                {
-                    FileStream fs = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read);
-                     
-
-                }
-            }
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog(this);
+            dataGridView1.DataSource = readCSV(openFileDialog.FileName);
         }
     }
 }
