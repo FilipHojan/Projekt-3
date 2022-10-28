@@ -62,6 +62,15 @@ namespace excel
         }
 
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = e.RowIndex;
+            DataGridViewRow selectedRow = dataGridView1.Rows[index];
+            tytul = selectedRow.Cells[0].Value.ToString();
+            autor = selectedRow.Cells[1].Value.ToString();
+            id = selectedRow.Cells[2].Value.ToString();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             Hide();
@@ -80,10 +89,35 @@ namespace excel
             Show();
         }
 
+
+
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog(this);
 
+
+            File.WriteAllText(openFileDialog.FileName, V);
+
+            foreach (DataGridViewRow item in dataGridView1.Rows)
+            {
+                if (item.Index < dataGridView1.RowCount - 1)
+                {
+                    string lines = item.Cells[0].Value.ToString() + ',' + item.Cells[1].Value.ToString() + ',' + item.Cells[2].Value.ToString() + '\n';
+
+                    File.AppendAllText(openFileDialog.FileName, lines);
+                }
+
+            }
         }
+
+
+
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
