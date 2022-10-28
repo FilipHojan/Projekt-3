@@ -12,15 +12,10 @@ namespace excel
 {
     public partial class Form2 : Form
     {
-        Form1 fgrid;
-        public Form2(Form1 fg)
-        {
-            InitializeComponent();
-            this.fgrid = fg;
-        }
-
+        
         public Form2()
         {
+            InitializeComponent();
             textBox1.Text = Form1.autor;
             textBox2.Text = Form1.tytul;
             textBox3.Text = Form1.id;

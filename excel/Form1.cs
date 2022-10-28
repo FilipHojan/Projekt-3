@@ -53,15 +53,13 @@ namespace excel
             return dt;
         }
 
-
-
-
-
+        internal static void addRecord(DataTable dt)
+        {
+            throw new NotImplementedException();
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form2 finfo = new Form2(this);
-            finfo.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
