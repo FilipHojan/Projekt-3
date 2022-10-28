@@ -21,6 +21,9 @@ namespace excel
 
         public Form2()
         {
+            textBox1.Text = Form1.autor;
+            textBox2.Text = Form1.tytul;
+            textBox3.Text = Form1.id;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -41,7 +44,14 @@ namespace excel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            fgrid.dataGridView1.Rows.Add(textBox1.Text, textBox2.Text);
+            Form1.autor = textBox1.Text;
+            Form1.tytul = textBox2.Text;
+            Form1.id = textBox3.Text;
+
+            Form1.addRecord(Form1.dt);
+
+
+            Close();
         }
     }
 }

@@ -13,6 +13,14 @@ namespace excel
 {
     public partial class Form1 : Form
     {
+
+        private const string V = "Tytul,Autor,ID\n";
+        public static string tytul, autor, id;
+        public static int index, maxrow;
+        public static DataTable dt = new DataTable();
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +33,30 @@ namespace excel
         {
 
         }
+
+
+        public static DataTable readCSV(string filePath)
+        {
+            dt = new DataTable();
+            foreach (var headerLine in File.ReadLines(filePath).Take(1))
+            {
+                foreach (var headerItem in headerLine.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    dt.Columns.Add(headerItem.Trim());
+                }
+            }
+            foreach (var line in File.ReadLines(filePath).Skip(1))
+            {
+                dt.Rows.Add(line.Split(','));
+            }
+
+            return dt;
+        }
+
+
+
+
+
 
         private void button3_Click(object sender, EventArgs e)
         {
